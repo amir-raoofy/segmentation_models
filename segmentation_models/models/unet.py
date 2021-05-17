@@ -36,7 +36,7 @@ def Conv3x3BnReLU(filters, use_batchnorm, name=None):
             kernel_size=3,
             activation='relu',
             kernel_initializer='he_uniform',
-            padding='same',
+            padding='valid',
             use_batchnorm=use_batchnorm,
             name=name,
             **kwargs
@@ -82,7 +82,7 @@ def DecoderTransposeX2Block(filters, stage, use_batchnorm=False):
             filters,
             kernel_size=(4, 4),
             strides=(2, 2),
-            padding='same',
+            padding='valid',
             name=transp_name,
             use_bias=not use_batchnorm,
         )(input_tensor)
@@ -142,7 +142,7 @@ def build_unet(
     x = layers.Conv2D(
         filters=classes,
         kernel_size=(3, 3),
-        padding='same',
+        padding='valid',
         use_bias=True,
         kernel_initializer='glorot_uniform',
         name='final_conv',
